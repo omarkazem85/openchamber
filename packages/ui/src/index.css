@@ -76,9 +76,9 @@ button,
   line-height: round(1.625em, 1px);
 }
 
-/* Prompts and rendered prose follow their own first strong character without
-   mirroring the surrounding app chrome. `plaintext` also lets separate
-   paragraphs in a mixed-language response resolve independently. */
+/* Each prompt or rendered message follows its first strong character without
+   mirroring the surrounding app chrome. `plaintext` preserves inline bidi
+   behavior within that message-level direction. */
 [data-chat-input="true"] .cm-content,
 .markdown-content {
   unicode-bidi: plaintext;

@@ -1,7 +1,8 @@
 # Chat Message Parts: Rendering Architecture
 
 Rendered Markdown prose uses automatic bidirectional direction at the content
-root. Shared chat CSS resolves paragraphs as plaintext while isolating code,
+root. Each message takes one direction from its first strong character. Shared
+chat CSS applies plaintext bidi behavior to that root while isolating code,
 file paths, and other technical text as left-to-right; the application chrome
 is never mirrored.
 
