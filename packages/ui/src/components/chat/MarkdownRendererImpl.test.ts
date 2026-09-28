@@ -29,6 +29,7 @@ type FakeJsxProps = {
     ref?: { current: FakeElement | null };
     children?: FakeElement | FakeElement[];
     className?: string;
+    dir?: string;
     'data-markdown-content'?: boolean;
 };
 
@@ -212,6 +213,7 @@ const fakeJsx = (_type: string, props: FakeJsxProps | null, ...children: FakeEle
     if (props) {
         if (ref) ref.current = element;
         if (props.className) element.setAttribute('class', props.className);
+        if (props.dir) element.setAttribute('dir', props.dir);
         if (props['data-markdown-content']) element.setAttribute('data-markdown-content', '');
     }
     const jsxChildren = props?.children;
@@ -479,6 +481,17 @@ describe('localPathFromFileUrl', () => {
 });
 
 describe('MarkdownRenderer warm settled path', () => {
+    test('marks rendered prose for automatic bidirectional direction', () => {
+        return withRendererDom(() => {
+            resetRendererTestState();
+
+            const root = rendererRoot(beginRendererRender());
+            const content = root.querySelector('[data-markdown-content]');
+
+            expect(content?.getAttribute('dir')).toBe('auto');
+        });
+    });
+
     test('installs cached blocks without sync fallback and skips same-ID morph', async () => {
         await withRendererDom(async () => {
             resetRendererTestState();

@@ -305,6 +305,7 @@ export const ComposerEditor = React.forwardRef<ComposerEditorHandle, ComposerEdi
                             paste: (event) => { handlersRef.current.onPaste?.(event); return false; },
                         }),
                         EditorView.contentAttributes.of({
+                            dir: 'auto',
                             spellcheck: String(handlersRef.current.spellCheck ?? false),
                             autocorrect: handlersRef.current.autoCorrect ?? 'off',
                             autocapitalize: handlersRef.current.autoCapitalize ?? 'none',

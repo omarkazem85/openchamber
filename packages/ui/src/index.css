@@ -76,6 +76,33 @@ button,
   line-height: round(1.625em, 1px);
 }
 
+/* Prompts and rendered prose follow their own first strong character without
+   mirroring the surrounding app chrome. `plaintext` also lets separate
+   paragraphs in a mixed-language response resolve independently. */
+[data-chat-input="true"] .cm-content,
+.markdown-content {
+  unicode-bidi: plaintext;
+  text-align: start;
+}
+
+/* Technical content keeps its conventional left-to-right reading order even
+   inside an Arabic message. Isolating it prevents paths and code punctuation
+   from reordering adjacent prose. */
+.markdown-content :where(
+  pre,
+  code,
+  kbd,
+  samp,
+  [data-markdown="code-block"],
+  [data-md-code-body],
+  [data-md-code-lines],
+  [data-openchamber-file-link="true"]
+) {
+  direction: ltr;
+  unicode-bidi: isolate;
+  text-align: left;
+}
+
 /* Native selection uses the theme's selection pair. */
 .message-content-text::selection,
 .message-content-text ::selection,

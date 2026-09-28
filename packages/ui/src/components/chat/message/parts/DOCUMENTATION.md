@@ -1,5 +1,10 @@
 # Chat Message Parts: Rendering Architecture
 
+Rendered Markdown prose uses automatic bidirectional direction at the content
+root. Shared chat CSS resolves paragraphs as plaintext while isolating code,
+file paths, and other technical text as left-to-right; the application chrome
+is never mirrored.
+
 This folder contains renderers for chat message parts (text, tools, reasoning, placeholders) and shared tool presentation helpers.
 
 Use this doc when you ask an agent to change tool/header/description behavior.

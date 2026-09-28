@@ -7,6 +7,11 @@ everything between typing and sending.
 own state and wires these modules together; it should not grow logic that
 belongs to one of them.
 
+The CodeMirror content element uses `dir="auto"`. Shared chat CSS applies
+`unicode-bidi: plaintext` and logical start alignment, so Arabic prompts align
+right while English prompts remain left-to-right without mirroring composer
+controls or the surrounding application.
+
 `ChatContainer.tsx` keeps one `ChatInput` mounted while a new-session draft
 becomes its first session. Draft-only UI first fades for 120ms while the editor
 stays in place. The parent then moves the editor to its final session position
